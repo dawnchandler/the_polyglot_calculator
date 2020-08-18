@@ -1,0 +1,27 @@
+FROM alpine
+
+RUN apk update
+RUN apk fetch openjdk8
+RUN apk add openjdk8
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
+ENV PATH="$JAVA_HOME/bin:${PATH}"
+
+RUN mkdir -p /calculator-java
+RUN mkdir -p /calculator-java/dependencies
+RUN mkdir -p /calculator-java/src
+RUN mkdir -p /calculator-java/target
+
+WORKDIR /calculator-java/dependencies
+COPY calculator-java/dependencies .
+
+WORKDIR /calculator-java/src
+COPY calculator-java/src/main/java .
+
+
+WORKDIR /calculator-java
+
+COPY calculator-java/start_calculator.sh .
+
+CMD ["./start_calculator.sh"]
+
+# CMD ["ash"]

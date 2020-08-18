@@ -1,0 +1,5 @@
+# for webapp
+Django
+
+# for rabbitmq
+pika

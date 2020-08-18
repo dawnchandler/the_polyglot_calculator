@@ -1,0 +1,13 @@
+FROM python:3.8.5-alpine
+
+RUN apk add build-base
+
+RUN mkdir -p /calculator/cpp
+WORKDIR /calculator/cpp
+COPY calculator-cpp .
+
+RUN mkdir -p /calculator/django
+WORKDIR /calculator/django
+COPY calculator-webapp/calculator .
+
+CMD ["./start_calculator.sh"]

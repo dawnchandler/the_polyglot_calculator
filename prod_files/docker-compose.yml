@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+  calculator-rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_ERLANG_COOKIE: 'secret cookie here'
+    volumes:
+      - rabbitmq_logs:/var/lib/rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    container_name: calculator-rabbitmq
+  calculator:
+    build:
+      context: ../
+      dockerfile: ./prod_files/Dockerfile_calculator
+    container_name: calculator
+    ports:
+      - 8000:8000
+    restart: on-failure
+    depends_on:
+      - calculator-rabbitmq
+  calculator-java:
+    build:
+      context: ../
+      dockerfile: ./prod_files/Dockerfile_java_calculator
+    container_name: calculator-java
+    restart: on-failure
+    depends_on:
+      - calculator-rabbitmq
+volumes:
+  rabbitmq_logs:
+    external:
+      name: "calculator-logs"
