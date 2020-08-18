@@ -1,3 +1,7 @@
+# The Polyglot Calculator
+
+![Screenshot of the webapp.](calculator.png)
+
 # Project Summary
 
 ### What is the overall goal of the project (i.e. what does it do, or what problem is it solving)?
