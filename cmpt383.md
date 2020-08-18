@@ -14,11 +14,14 @@ The frontend is written using **JavaScript**, HTML, and CSS; it is built on the 
 The Django framework handles the communication between Python and JavaScript/HTML/CSS. Python communicates with C++ via the Python module `ctypes`, which is a foreign function interface. Python communicates with Java via the RabbitMQ messaging system.
 
 ### Exactly what steps should be taken to get the project working, after getting your code? 
-1. From the root of the project directory, run `./prod_files/create_calculator.sh`. 
-    - Starts 3 Docker containers (RabbitMQ, Java, Django/C++). 
-    - Creates a Docker volume where the logs for the messaging service get dumped.
-    - May display errors from both the Java container and the Django container. This is normal. The Docker configurations are set such that it will keep retrying to start the Django and Java containers until the messaging container is ready to accept a connection.
-2. View the Polyglot Calculator at: http://127.0.0.1:8000/
+1. Ensure that Docker is running on your machine. Opening the Docker GUI should do the trick.
+2. From the root of the project directory, run: `./prod_files/create_calculator.sh`
+    - If you see `ERROR: Couldn't connect to Docker daemon.` return to step 1.
+    - This script starts 3 Docker containers (RabbitMQ, Java, Django/C++) and creates a Docker volume where the logs for the messaging service get dumped.
+    - While the script is running, it may display errors from both the Java container and the Django container. This is normal. The Docker configurations are set such that it will keep retrying to start the Django and Java containers until the messaging container is ready to accept a connection.
+    - When the script has finished and the Docker containers are set up, you will see `calculator-java_1      |  [x] Awaiting RPC requests`.
+2. View The Polyglot Calculator at: http://127.0.0.1:8000/
+    - If you don't see the calculator, step 2 may not have finished yet.
 
 ### What features should we be looking for when marking your project?
 The Polyglot Calculator can do the following:
@@ -30,10 +33,11 @@ The Polyglot Calculator can do the following:
 - Display the *total time* it took for Python to make an FFI call to C++ and get the result.
 - Display the *total time* it took for Python to send a message to Java via RabbitMQ and get the result.
 - Display the *execution times* of C++ and Java (*excludes* the FFI calls, RabbitMQ messaging, and wrapper Python logic).
-- Provide a nice UX: colourful UI, both keyboard and button click inputs, show the last expression evaluated even after executed.
+- Provide a nice UX: colourful and thoughtfully laid out UI, both keyboard and button click inputs, focus is always set to the calculator input, show the last expression evaluated even after executed.
 
 ### References:
 - Python Shunting Yard algorithm and postfix evaluation adapted from: http://www.martinbroadhurst.com/shunting-yard-algorithm-in-python.html
 - RabbitMQ Java RPC server code adapted from: https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/RPCServer.java
 - RabbitMQ Python client code adapted from: https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/rpc_client.py
 - Using ctypes in Python to call C++ functions code adapted from: https://nesi.github.io/perf-training/python-scatter/ctypes
+
