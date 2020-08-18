@@ -9,12 +9,12 @@ services:
     ports:
       - 15672:15672
       - 5672:5672
-    container_name: calculator-rabbitmq
+    container_name: "${COMPOSE_PROJECT_NAME}_calculator-rabbitmq"
   calculator:
     build:
       context: ../
       dockerfile: ./prod_files/Dockerfile_calculator
-    container_name: calculator
+    container_name: "${COMPOSE_PROJECT_NAME}_calculator"
     ports:
       - 8000:8000
     restart: on-failure
@@ -24,11 +24,11 @@ services:
     build:
       context: ../
       dockerfile: ./prod_files/Dockerfile_java_calculator
-    container_name: calculator-java
+    container_name: "${COMPOSE_PROJECT_NAME}_calculator-java"
     restart: on-failure
     depends_on:
       - calculator-rabbitmq
 volumes:
   rabbitmq_logs:
     external:
-      name: "calculator-logs"
+      name: "${COMPOSE_PROJECT_NAME}_calculator-logs"
