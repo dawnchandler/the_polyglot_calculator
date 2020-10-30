@@ -2,18 +2,16 @@
 
 ![Screenshot of the webapp.](calculator.png)
 
-# Project Summary
-
-### What is the overall goal of the project (i.e. what does it do, or what problem is it solving)?
+### Introduction
 The Polyglot Calculator is a webapp where a user can explore the differences in how programming languages perform mathematical calculations. It displays the results of the same mathematical calculation executed by C++ and Java. It also compares their time performance.
 
-### Which languages did you use, and what parts of the system are implemented in each?
+### Architectural Overview
 The frontend is written using **JavaScript**, HTML, and CSS; it is built on the Django framework (which is **Python** based). The languages in the backend that execute the user-inputted mathematical calculation are **C++** and **Java**.
 
-### What methods did you use to communicate between languages?
+### How the Different Languages Communicate
 The Django framework handles the communication between Python and JavaScript/HTML/CSS. Python communicates with C++ via the Python module `ctypes`, which is a foreign function interface. Python communicates with Java via the RabbitMQ messaging system.
 
-### Exactly what steps should be taken to get the project working, after getting your code? 
+### How to Get the Project Working (After Getting the Code)
 1. Ensure that Docker is running on your machine. Opening the Docker GUI should do the trick.
 2. From the root of the project directory, run: `./prod_files/create_calculator.sh`
     - If you see `ERROR: Couldn't connect to Docker daemon.` return to step 1.
@@ -23,7 +21,7 @@ The Django framework handles the communication between Python and JavaScript/HTM
 2. View The Polyglot Calculator at: http://127.0.0.1:8000/
     - If you don't see the calculator, step 2 may not have finished yet.
 
-### What features should we be looking for when marking your project?
+### Some Salient Features
 The Polyglot Calculator can do the following:
 - Parse (Shunting-Yard algorithm) and evaluate (postfix notation) user-inputted BEDMAS expressions (exponentiation, division, multiplication, addition, subtraction). For example: `(35-9) / ((2+2) * 13)`.
 - Support decimal inputs. For example: `3.1 + 4.2`.
@@ -33,9 +31,9 @@ The Polyglot Calculator can do the following:
 - Display the *total time* it took for Python to make an FFI call to C++ and get the result.
 - Display the *total time* it took for Python to send a message to Java via RabbitMQ and get the result.
 - Display the *execution times* of C++ and Java (*excludes* the FFI calls, RabbitMQ messaging, and wrapper Python logic).
-- Provide a nice UX: colourful and thoughtfully laid out UI, both keyboard and button click inputs, focus is always set to the calculator input, show the last expression evaluated even after executed.
+- Provide a usable UI: **please consider the frontend of this project in a prototype/MVP state**; the focus of this project was the backend.
 
-### References:
+### References
 - Python Shunting Yard algorithm and postfix evaluation adapted from: http://www.martinbroadhurst.com/shunting-yard-algorithm-in-python.html
 - RabbitMQ Java RPC server code adapted from: https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/java/RPCServer.java
 - RabbitMQ Python client code adapted from: https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/python/rpc_client.py
