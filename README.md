@@ -3,7 +3,7 @@
 ![Screenshot of the webapp.](calculator.png)
 
 ### Introduction
-The Polyglot Calculator is a webapp where a user can explore the differences in how programming languages perform mathematical calculations. It displays the results of the same mathematical calculation executed by C++ and Java. It also compares their time performance.
+The Polyglot Calculator is a webapp (created for CMPT 383 at SFU in Summer 2020) where a user can explore the differences in how programming languages perform mathematical calculations. It displays the results of the same mathematical calculation executed by C++ and Java. It also compares their time performance.
 
 ### Architectural Overview
 The frontend is written using **JavaScript**, HTML, and CSS; it is built on the Django framework (which is **Python** based). The languages in the backend that execute the user-inputted mathematical calculation are **C++** and **Java**.
